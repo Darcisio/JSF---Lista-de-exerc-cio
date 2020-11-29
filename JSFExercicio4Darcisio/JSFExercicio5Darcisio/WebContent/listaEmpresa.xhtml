@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Mostrar Alunos</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:commandLink value="Cadastro" action="cadastroEmpresa.xhtml" immediate="true" />
+		<h1>Mostrar Alunos</h1>
+		<h:messages />
+		<h:dataTable border="1" value="#{empresaController.lista}" var="venda">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{empresa.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome Fantasia" />
+				</f:facet>
+				<h:outputText value="#{empresa.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="CNPJ" />
+				</f:facet>
+				<h:outputText value="#{empresa.cnpj}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="endereco" />
+				</f:facet>
+				<h:outputText value="#{empresa.endereco}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data de cadastro" />
+				</f:facet>
+				<h:outputText value="#{empresa.dataCadastro}">
+				 	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				<h:commandButton value="Incluir" action="#{EmpresaController.incluir}" onclick="return confirm('Confirma a inclusão ?')">
+					<f:setPropertyActionListener 
+						value="#{empresa}" 
+						target="#{empresaController.empresa}" />
+				</h:commandButton>
+				<h:commandButton value="Listar" action="#{EmpresaController.listar}" onclick="return confirm('Confirma Listar ?')">
+					<f:setPropertyActionListener 
+						value="#{empresa}" 
+						target="#{empresaController.empresa}" />
+				</h:commandButton>
+				<h:commandButton value="Editar" action="#{EmpresaController.editar}">
+					<f:setPropertyActionListener 
+						value="#{empresa}" 
+						target="#{empresaController.empresa}" />
+				</h:commandButton>
+				<h:commandButton value="Excluir" action="#{empresaController.excluir}" onclick="return confirm('Confirma a exclusão ?')">
+					<f:setPropertyActionListener 
+						value="#{empresa}" 
+						target="#{empresaController.empresa}" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

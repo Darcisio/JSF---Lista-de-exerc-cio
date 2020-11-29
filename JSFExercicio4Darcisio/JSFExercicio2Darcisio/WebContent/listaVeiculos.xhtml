@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Mostrar Carros</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:commandLink value="Cadastro" action="cadastroVeiculo.xhtml" immediate="true" />
+		<h1>Mostrar Carros</h1>
+		<h:messages />
+		<h:dataTable border="1" value="#{vendaController.lista}" var="venda">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{venda.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{venda.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Marca" />
+				</f:facet>
+				<h:outputText value="#{venda.marca}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ano fabricação" />
+				</f:facet>
+				<h:outputText value="#{venda.ano}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Placa" />
+				</f:facet>
+				<h:outputText value="#{venda.placa}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data de cadastro" />
+				</f:facet>
+				<h:outputText value="#{venda.dataCadastro}">
+				 	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				<h:commandButton value="Incluir" action="#{vendaController.incluir}" onclick="return confirm('Confirma a inclusão ?')">
+					<f:setPropertyActionListener 
+						value="#{venda}" 
+						target="#{vendaController.venda}" />
+				</h:commandButton>
+				<h:commandButton value="Listar" action="#{vendaController.listar}" onclick="return confirm('Confirma Listar ?')">
+					<f:setPropertyActionListener 
+						value="#{venda}" 
+						target="#{vendaController.venda}" />
+				</h:commandButton>
+				<h:commandButton value="Editar" action="#{vendaController.editar}">
+					<f:setPropertyActionListener 
+						value="#{venda}" 
+						target="#{vendaController.venda}" />
+				</h:commandButton>
+				<h:commandButton value="Excluir" action="#{vendaController.excluir}" onclick="return confirm('Confirma a exclusão ?')">
+					<f:setPropertyActionListener 
+						value="#{venda}" 
+						target="#{vendaController.venda}" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
